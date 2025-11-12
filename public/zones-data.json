@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "indicatorName": "Mode share (trips made by foot, bike, or transit) by Vancouver residents",
+    "dimension": "Transportation Survey Zones",
+    "geographyName": "Vancouver"
+  },
+  "zones": {
+    "CBD West End Zone": {
+      "name": "CBD West End Zone",
+      "data": [
+        { "year": "2013", "value": 71.0 },
+        { "year": "2014", "value": 70.0 },
+        { "year": "2015", "value": 78.0 },
+        { "year": "2016", "value": 71.0 },
+        { "year": "2017", "value": 72.0 },
+        { "year": "2018", "value": 72.0 },
+        { "year": "2019", "value": 72.0 },
+        { "year": "2020", "value": 73.0 }
+      ]
+    },
+    "CBD False Creek Zone": {
+      "name": "CBD False Creek Zone",
+      "data": [
+        { "year": "2013", "value": 63.0 },
+        { "year": "2014", "value": 68.0 },
+        { "year": "2015", "value": 64.0 },
+        { "year": "2016", "value": 63.0 },
+        { "year": "2017", "value": 65.0 },
+        { "year": "2018", "value": 67.0 },
+        { "year": "2019", "value": 66.0 },
+        { "year": "2020", "value": 53.0 }
+      ]
+    },
+    "Vancouver Broadway Zone": {
+      "name": "Vancouver Broadway Zone",
+      "data": [
+        { "year": "2013", "value": 53.0 },
+        { "year": "2014", "value": 52.0 },
+        { "year": "2015", "value": 54.0 },
+        { "year": "2016", "value": 54.0 },
+        { "year": "2017", "value": 59.0 },
+        { "year": "2018", "value": 64.0 },
+        { "year": "2019", "value": 69.0 },
+        { "year": "2020", "value": 55.0 }
+      ]
+    },
+    "Vancouver South Zone": {
+      "name": "Vancouver South Zone",
+      "data": [
+        { "year": "2013", "value": 43.0 },
+        { "year": "2014", "value": 41.0 },
+        { "year": "2015", "value": 41.0 },
+        { "year": "2016", "value": 39.0 },
+        { "year": "2017", "value": 39.0 },
+        { "year": "2018", "value": 46.0 },
+        { "year": "2019", "value": 49.0 },
+        { "year": "2020", "value": 32.0 }
+      ]
+    },
+    "Vancouver Kerrisdale Zone": {
+      "name": "Vancouver Kerrisdale Zone",
+      "data": [
+        { "year": "2013", "value": 24.0 },
+        { "year": "2014", "value": 36.0 },
+        { "year": "2015", "value": 33.0 },
+        { "year": "2016", "value": 34.0 },
+        { "year": "2017", "value": 32.0 },
+        { "year": "2018", "value": 35.0 },
+        { "year": "2019", "value": 36.0 },
+        { "year": "2020", "value": 26.0 }
+      ]
+    },
+    "Vancouver Kitsilano Zone": {
+      "name": "Vancouver Kitsilano Zone",
+      "data": [
+        { "year": "2013", "value": 45.0 },
+        { "year": "2014", "value": 49.0 },
+        { "year": "2015", "value": 53.0 },
+        { "year": "2016", "value": 61.0 },
+        { "year": "2017", "value": 56.0 },
+        { "year": "2018", "value": 59.0 },
+        { "year": "2019", "value": 64.0 },
+        { "year": "2020", "value": 50.0 }
+      ]
+    },
+    "Vancouver Southeast Zone": {
+      "name": "Vancouver Southeast Zone",
+      "data": [
+        { "year": "2013", "value": 32.0 },
+        { "year": "2014", "value": 36.0 },
+        { "year": "2015", "value": 35.0 },
+        { "year": "2016", "value": 36.0 },
+        { "year": "2017", "value": 34.0 },
+        { "year": "2018", "value": 38.0 },
+        { "year": "2019", "value": 36.0 },
+        { "year": "2020", "value": 23.0 }
+      ]
+    },
+    "Vancouver East Zone": {
+      "name": "Vancouver East Zone",
+      "data": [
+        { "year": "2013", "value": 40.0 },
+        { "year": "2014", "value": 45.0 },
+        { "year": "2015", "value": 44.0 },
+        { "year": "2016", "value": 42.0 },
+        { "year": "2017", "value": 40.0 },
+        { "year": "2018", "value": 43.0 },
+        { "year": "2019", "value": 44.0 },
+        { "year": "2020", "value": 37.0 }
+      ]
+    },
+    "Vancouver Port Zone": {
+      "name": "Vancouver Port Zone",
+      "data": [
+        { "year": "2013", "value": 59.0 },
+        { "year": "2014", "value": 58.0 },
+        { "year": "2015", "value": 60.0 },
+        { "year": "2016", "value": 60.0 },
+        { "year": "2017", "value": 56.0 },
+        { "year": "2018", "value": 60.0 },
+        { "year": "2019", "value": 60.0 },
+        { "year": "2020", "value": 53.0 }
+      ]
+    }
+  }
+}

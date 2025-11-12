@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "indicatorName": "Mode share (trips made by foot, bike, or transit) by Vancouver residents",
+    "dimension": "Age Group",
+    "ageGroup": "18 to 24 years old",
+    "geographyName": "City"
+  },
+  "data": [
+    { "year": "2013", "value": 72.0 },
+    { "year": "2014", "value": 75.0 },
+    { "year": "2015", "value": 69.0 },
+    { "year": "2016", "value": 68.0 },
+    { "year": "2017", "value": 66.0 },
+    { "year": "2018", "value": 75.0 },
+    { "year": "2019", "value": 68.0 },
+    { "year": "2020", "value": 55.0 }
+  ]
+}

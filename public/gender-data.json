@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "indicatorName": "Mode share (trips made by foot, bike, or transit) by Vancouver residents",
+    "dimension": "Gender",
+    "geographyName": "City"
+  },
+  "maleData": [
+    { "year": "2013", "value": 51.0 },
+    { "year": "2014", "value": 51.0 },
+    { "year": "2015", "value": 49.0 },
+    { "year": "2016", "value": 50.0 },
+    { "year": "2017", "value": 48.0 },
+    { "year": "2018", "value": 53.0 },
+    { "year": "2019", "value": 53.0 },
+    { "year": "2020", "value": 45.0 }
+  ],
+  "femaleData": [
+    { "year": "2013", "value": 47.0 },
+    { "year": "2014", "value": 49.0 },
+    { "year": "2015", "value": 49.0 },
+    { "year": "2016", "value": 50.0 },
+    { "year": "2017", "value": 48.0 },
+    { "year": "2018", "value": 52.0 },
+    { "year": "2019", "value": 55.0 },
+    { "year": "2020", "value": 42.0 }
+  ]
+}
