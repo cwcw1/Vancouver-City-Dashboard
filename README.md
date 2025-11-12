@@ -53,6 +53,8 @@ Once the server is running, open your browser and navigate to:
 ```
 http://localhost:3000
 ```
+### Online Link:
+https://tourmaline-bubblegum-bbc190.netlify.app/#
 
 You should see the Vancouver City Dashboard running!
 
