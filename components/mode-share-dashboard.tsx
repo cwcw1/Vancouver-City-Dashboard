@@ -16,6 +16,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js"
+import VancouverMap from "./vancouver-map"
+import { Toast } from "@/components/ui/toast"
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
@@ -37,6 +39,7 @@ export default function ModeShareDashboard() {
   const [age45to64Data, setAge45to64Data] = useState<any>(null)
   const [age65toolderData, setAge65toolderData] = useState<any>(null)
   const [zonesData, setZonesData] = useState<any>(null)
+  const [showToast, setShowToast] = useState<boolean>(false)
 
   // Load gender data on component mount
   useEffect(() => {
@@ -220,8 +223,8 @@ export default function ModeShareDashboard() {
         datasets.push({
           label: `${zone1Data.name} (%)`,
           data: zone1Values,
-          borderColor: "#0071BC",
-          backgroundColor: "#0071BC",
+          borderColor: "#308820ff",
+          backgroundColor: "#308820ff",
           tension: 0.1,
         })
       }
@@ -249,8 +252,8 @@ export default function ModeShareDashboard() {
       datasets.push({
         label: "Data 1 (%)",
         data: [47, 65, 48, 68, 95, 45, 68, 48],
-        borderColor: "#0071BC",
-        backgroundColor: "#0071BC",
+        borderColor: "#308820ff",
+        backgroundColor: "#308820ff",
         tension: 0.1,
       })
       datasets.push({
@@ -313,6 +316,7 @@ export default function ModeShareDashboard() {
       },
     },
   }
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -454,111 +458,113 @@ export default function ModeShareDashboard() {
 
         <Card className="mb-6 border border-gray-300">
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <div className="mb-4">
-                  <p className="text-xs text-gray-500 mb-2">Travel mode (walk, bike, transit)
-</p>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Select your filter</h3>
-                </div>
+            <div className="mb-4">
+              <p className="text-xs text-gray-500 mb-2">Travel mode (walk, bike, transit)</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Select your filter</h3>
+            </div>
 
-                {/* Chart.js Line Chart */}
-                <div className="h-[300px]">{chartData && <Line data={chartData} options={chartOptions} />}</div>
-
-                {/* Legend */}
-                <div className="flex items-center gap-4 mt-4 text-sm">
-                  {chartData?.datasets.map((dataset: any, index: number) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: dataset.borderColor }} />
-                      <span className="text-gray-700">{dataset.label}</span>
-                    </div>
-                  ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div>
+                <p className="text-md text-gray-700 mb-3">Choose from age group to gender.</p>
+                <div className="flex items-center gap-2">
+                  <Select value={selectedGender || selected18to24 || selected25to44 || selected45to64 || selected65toolder || selectedDemographic} onValueChange={(value) => {
+                      if (value === "Gender") {
+                        setSelectedGender(value)
+                        setSelectedDemographic("")
+                        setSelected18to24("")
+                        setSelected25to44("")
+                        setSelected45to64("")
+                        setSelected65toolder("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      } else if (value === "18 to 24 years old") {
+                        setSelected18to24(value)
+                        setSelectedDemographic("")
+                        setSelectedGender("")
+                        setSelected25to44("")
+                        setSelected45to64("")
+                        setSelected65toolder("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      } else if (value === "25 to 44 years old") {
+                        setSelected25to44(value)
+                        setSelectedDemographic("")
+                        setSelectedGender("")
+                        setSelected18to24("")
+                        setSelected45to64("")
+                        setSelected65toolder("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      } else if (value === "45 to 64 years old") {
+                        setSelected45to64(value)
+                        setSelectedDemographic("")
+                        setSelectedGender("")
+                        setSelected18to24("")
+                        setSelected25to44("")
+                        setSelected65toolder("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      } else if (value === "65 years old and older") {
+                        setSelected65toolder(value)
+                        setSelectedDemographic("")
+                        setSelectedGender("")
+                        setSelected18to24("")
+                        setSelected25to44("")
+                        setSelected45to64("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      } else {
+                        setSelectedDemographic(value)
+                        setSelectedGender("")
+                        setSelected18to24("")
+                        setSelected25to44("")
+                        setSelected45to64("")
+                        setSelected65toolder("")
+                        // Clear zones when demographic is selected
+                        setSelectedZone1("")
+                        setSelectedZone2("")
+                      }
+                    }}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select a filter" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="18 to 24 years old">18 to 24 years old</SelectItem>
+                        <SelectItem value="25 to 44 years old">25 to 44 years old</SelectItem>
+                        <SelectItem value="45 to 64 years old">45 to 64 years old</SelectItem>
+                        <SelectItem value="65 years old and older">65 years old and older</SelectItem>
+                        <SelectItem value="Gender">Gender</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {(selectedGender || selected18to24 || selected25to44 || selected45to64 || selected65toolder) && (
+                      <button
+                        onClick={() => {
+                          setSelectedGender("")
+                          setSelected18to24("")
+                          setSelected25to44("")
+                          setSelected45to64("")
+                          setSelected65toolder("")
+                          setSelectedDemographic("")
+                        }}
+                        className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:bg-gray-100 text-gray-600 hover:text-gray-900"
+                        aria-label="Clear demographic filter"
+                      >
+                        ✕
+                      </button>
+                    )}
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm text-gray-700 mb-3">Choose from age group to gender.</p>
-                  <Select value={selectedGender || selected18to24 || selected25to44 || selected45to64 || selected65toolder || selectedDemographic} onValueChange={(value) => {
-                    if (value === "Gender") {
-                      setSelectedGender(value)
-                      setSelectedDemographic("")
-                      setSelected18to24("")
-                      setSelected25to44("")
-                      setSelected45to64("")
-                      setSelected65toolder("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    } else if (value === "18 to 24 years old") {
-                      setSelected18to24(value)
-                      setSelectedDemographic("")
-                      setSelectedGender("")
-                      setSelected25to44("")
-                      setSelected45to64("")
-                      setSelected65toolder("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    } else if (value === "25 to 44 years old") {
-                      setSelected25to44(value)
-                      setSelectedDemographic("")
-                      setSelectedGender("")
-                      setSelected18to24("")
-                      setSelected45to64("")
-                      setSelected65toolder("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    } else if (value === "45 to 64 years old") {
-                      setSelected45to64(value)
-                      setSelectedDemographic("")
-                      setSelectedGender("")
-                      setSelected18to24("")
-                      setSelected25to44("")
-                      setSelected65toolder("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    } else if (value === "65 years old and older") {
-                      setSelected65toolder(value)
-                      setSelectedDemographic("")
-                      setSelectedGender("")
-                      setSelected18to24("")
-                      setSelected25to44("")
-                      setSelected45to64("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    } else {
-                      setSelectedDemographic(value)
-                      setSelectedGender("")
-                      setSelected18to24("")
-                      setSelected25to44("")
-                      setSelected45to64("")
-                      setSelected65toolder("")
-                      // Clear zones when demographic is selected
-                      setSelectedZone1("")
-                      setSelectedZone2("")
-                    }
-                  }}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a filter" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="18 to 24 years old">18 to 24 years old</SelectItem>
-                      <SelectItem value="25 to 44 years old">25 to 44 years old</SelectItem>
-                      <SelectItem value="45 to 64 years old">45 to 64 years old</SelectItem>
-                      <SelectItem value="65 years old and older">65 years old and older</SelectItem>
-                      <SelectItem value="Gender">Gender</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <p className="text-sm text-gray-700 mb-3">
-                    Compare up to two zones by using the dropdowns.
-                  </p>
+              <div>
+                <p className="text-md text-gray-700 mb-3">
+                  Compare up to two zones by using the dropdowns.
+                </p>
+                <div className="flex items-center gap-2 mb-2">
                   <Select value={selectedZone1} onValueChange={(value) => {
                     setSelectedZone1(value)
                     // Clear all demographic filters when zone is selected
@@ -569,7 +575,7 @@ export default function ModeShareDashboard() {
                     setSelected65toolder("")
                     setSelectedDemographic("")
                   }}>
-                    <SelectTrigger className="w-full mb-2">
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select an area" />
                     </SelectTrigger>
                     <SelectContent>
@@ -584,6 +590,17 @@ export default function ModeShareDashboard() {
                       <SelectItem value="Vancouver Port Zone">9 Vancouver Port Zone</SelectItem>
                     </SelectContent>
                   </Select>
+                  {selectedZone1 && (
+                    <button
+                      onClick={() => setSelectedZone1("")}
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:bg-gray-100 text-gray-600 hover:text-gray-900"
+                      aria-label="Clear zone 1 selection"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
                   <Select value={selectedZone2} onValueChange={(value) => {
                     setSelectedZone2(value)
                     // Clear all demographic filters when zone is selected
@@ -609,25 +626,74 @@ export default function ModeShareDashboard() {
                       <SelectItem value="Vancouver Port Zone">9 Vancouver Port Zone</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
-
-                <div className="relative h-48 bg-[#A8D5E2] rounded border border-gray-300 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 border-2 border-gray-400 bg-white/50" />
-                  </div>
-                  <div className="absolute top-2 right-2 flex flex-col gap-1">
-                    <button className="w-8 h-8 bg-white border border-gray-300 rounded flex items-center justify-center text-lg font-bold hover:bg-gray-50">
-                      +
+                  {selectedZone2 && (
+                    <button
+                      onClick={() => setSelectedZone2("")}
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:bg-gray-100 text-gray-600 hover:text-gray-900"
+                      aria-label="Clear zone 2 selection"
+                    >
+                      ✕
                     </button>
-                    <button className="w-8 h-8 bg-white border border-gray-300 rounded flex items-center justify-center text-lg font-bold hover:bg-gray-50">
-                      −
-                    </button>
-                  </div>
-                  <div className="absolute bottom-2 left-2 text-xs text-gray-600 bg-white/80 px-2 py-1 rounded">
-                    Leaflet | Powered by Esri
-                  </div>
+                  )}
                 </div>
               </div>
+            </div>
+
+            {/* Chart Section - Full width */}
+            <div className="mb-6">
+              <div className="h-[300px]">{chartData && <Line data={chartData} options={chartOptions} />}</div>
+
+              {/* Legend */}
+              <div className="flex items-center gap-4 mt-4 text-sm">
+                {chartData?.datasets.map((dataset: any, index: number) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: dataset.borderColor }} />
+                    <span className="text-gray-700">{dataset.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Map Section - Full width below chart, same size as chart */}
+            <div className="relative h-[300px] rounded border border-gray-300 overflow-hidden">
+              <VancouverMap 
+                className="w-full h-full"
+                selectedZone1={selectedZone1}
+                selectedZone2={selectedZone2}
+                onZoneSelect={(zoneName) => {
+                  // Remove the number prefix (e.g., "1 " from "1 CBD West End Zone")
+                  const cleanZoneName = zoneName.replace(/^\d+\s+/, '')
+                  
+                  // Toggle off if clicking an already-selected area
+                  if (selectedZone1 === cleanZoneName) {
+                    setSelectedZone1("")
+                    return
+                  }
+                  
+                  if (selectedZone2 === cleanZoneName) {
+                    setSelectedZone2("")
+                    return
+                  }
+                  
+                  // Select first area if empty
+                  if (!selectedZone1) {
+                    setSelectedZone1(cleanZoneName)
+                    return
+                  }
+                  
+                  // Select second area only if first area is already chosen
+                  if (selectedZone1 && !selectedZone2) {
+                    setSelectedZone2(cleanZoneName)
+                    return
+                  }
+                  
+                  // If both are filled, show toast message
+                  if (selectedZone1 && selectedZone2) {
+                    setShowToast(true)
+                    return
+                  }
+                }}
+              />
             </div>
           </CardContent>
         </Card>
@@ -637,72 +703,88 @@ export default function ModeShareDashboard() {
 
           <div className="space-y-3">
             <Collapsible open={openSections.includes("why")} onOpenChange={() => toggleSection("why")}>
-              <Card className="border border-gray-300">
+              <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <CollapsibleTrigger className="w-full">
-                  <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50">
-                    <span className="font-semibold text-gray-900">Why we measure it</span>
+                  <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors">
+                    <span className="text-md font-semibold text-gray-900">Why we measure it</span>
                     <ChevronDown
-                      className={`h-5 w-5 transition-transform ${openSections.includes("why") ? "rotate-180" : ""}`}
+                      className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${openSections.includes("why") ? "rotate-180" : ""}`}
                     />
                   </CardContent>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <CardContent className="px-4 pb-4 pt-0 text-sm text-gray-700">
-                    The Climate Emergency Action Plan​ and Transportation 2040 Plan set targets around our 
-                    mode split to reduce our GHG emissions and ensure our transportation 
-                    network plays a key role in shaping Vancouver's future growth. We measure mode share to track the effectiveness of:
-                      <ul>
-                      <li className="mt-2">- Walking, cycling, and public transit are more sustainable modes of transportation that produce significantly fewer emissions per trip compared to single-occupancy vehicles.</li>
-                      <li className="mt-2">- Increasing the share of trips made by sustainable modes helps reduce traffic congestion, improve air quality, and enhance public health through increased physical activity.</li>
-                      <li className="mt-2">- Tracking mode share allows the city to assess the effectiveness of policies and investments aimed at promoting sustainable transportation options.</li>
-                      </ul>
+                  <CardContent className="px-4 pb-4 pt-2 text-sm text-gray-700 leading-relaxed border-t border-gray-100">
+                    <p className="mb-3">
+                      The Climate Emergency Action Plan​ and Transportation 2040 Plan set targets around our 
+                      mode split to reduce our GHG emissions and ensure our transportation 
+                      network plays a key role in shaping Vancouver's future growth. We measure mode share to track the effectiveness of:
+                    </p>
+                    <ul className="space-y-2 ml-2">
+                      <li className="flex items-start">
+                        <span className="text-[#0071BC] mr-2">•</span>
+                        <span>Walking, cycling, and public transit are more sustainable modes of transportation that produce significantly fewer emissions per trip compared to single-occupancy vehicles.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-[#0071BC] mr-2">•</span>
+                        <span>Increasing the share of trips made by sustainable modes helps reduce traffic congestion, improve air quality, and enhance public health through increased physical activity.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-[#0071BC] mr-2">•</span>
+                        <span>Tracking mode share allows the city to assess the effectiveness of policies and investments aimed at promoting sustainable transportation options.</span>
+                      </li>
+                    </ul>
                   </CardContent>
                 </CollapsibleContent>
               </Card>
             </Collapsible>
 
             <Collapsible open={openSections.includes("how")} onOpenChange={() => toggleSection("how")}>
-              <Card className="border border-gray-300">
+              <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <CollapsibleTrigger className="w-full">
-                  <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50">
-                    <span className="font-semibold text-gray-900">How we measure it</span>
+                  <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors">
+                    <span className="text-md font-semibold text-gray-900">How we measure it</span>
                     <ChevronDown
-                      className={`h-5 w-5 transition-transform ${openSections.includes("how") ? "rotate-180" : ""}`}
+                      className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${openSections.includes("how") ? "rotate-180" : ""}`}
                     />
                   </CardContent>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <CardContent className="px-4 pb-4 pt-0 text-sm text-gray-700">
-                    Our Engineering Services department conducts an annual 
-                    Transportation Panel Survey recording the trips that respondents make 
-                    using any mode of transportation. This indicator is based on all trips 
-                    between two points, whether for work, school, shopping, socializing, or 
-                    another purpose. It reports the percentage of these trips that are made by walking, 
-                    cycling, or public transit on a typical weekday.​
+                  <CardContent className="px-4 pb-4 pt-2 text-sm text-gray-700 leading-relaxed border-t border-gray-100">
+                    <p>
+                      Our Engineering Services department conducts an annual 
+                      Transportation Panel Survey recording the trips that respondents make 
+                      using any mode of transportation. This indicator is based on all trips 
+                      between two points, whether for work, school, shopping, socializing, or 
+                      another purpose. It reports the percentage of these trips that are made by walking, 
+                      cycling, or public transit on a typical weekday.
+                    </p>
                   </CardContent>
                 </CollapsibleContent>
               </Card>
             </Collapsible>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Collapsible open={openSections.includes("sdg")} onOpenChange={() => toggleSection("sdg")}>
-            <Card className="border border-gray-300">
+            <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
               <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50">
-                  <span className="font-semibold text-gray-900">Sustainable Development Goals</span>
+                <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors">
+                  <span className="text-md font-semibold text-gray-900">Sustainable Development Goals</span>
                   <ChevronDown
-                    className={`h-5 w-5 transition-transform ${openSections.includes("sdg") ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${openSections.includes("sdg") ? "rotate-180" : ""}`}
                   />
                 </CardContent>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <CardContent className="px-4 pb-4 pt-0 text-sm text-gray-700">
-                  This indicator aligns with: 
-                  <ul>
-                    <li>- Industry, innovation and infrastructure</li>
-                    <li>- Sustainable cities and communities</li>
+                <CardContent className="px-4 pb-4 pt-2 text-sm text-gray-700 leading-relaxed border-t border-gray-100">
+                  <p className="mb-2">This indicator aligns with:</p>
+                  <ul className="space-y-1 ml-2">
+                    <li className="flex items-start">
+                      <span className="text-[#0071BC] mr-2">•</span>
+                      <span>Industry, innovation and infrastructure</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-[#0071BC] mr-2">•</span>
+                      <span>Sustainable cities and communities</span>
+                    </li>
                   </ul>
                 </CardContent>
               </CollapsibleContent>
@@ -710,26 +792,32 @@ export default function ModeShareDashboard() {
           </Collapsible>
 
           <Collapsible open={openSections.includes("partners")} onOpenChange={() => toggleSection("partners")}>
-            <Card className="border border-gray-300">
+            <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
               <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50">
-                  <span className="font-semibold text-gray-900">Key Partners</span>
+                <CardContent className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors">
+                  <span className="text-md font-semibold text-gray-900">Key Partners</span>
                   <ChevronDown
-                    className={`h-5 w-5 transition-transform ${openSections.includes("partners") ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${openSections.includes("partners") ? "rotate-180" : ""}`}
                   />
                 </CardContent>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <CardContent className="px-4 pb-4 pt-0 text-sm text-gray-700">
-                  Meeting our target requires support from:
-                  <ul>- Regional government and services</ul>
+                <CardContent className="px-4 pb-4 pt-2 text-sm text-gray-700 leading-relaxed border-t border-gray-100">
+                  <p className="mb-2">Meeting our target requires support from:</p>
+                  <ul className="ml-2">
+                    <li className="flex items-start">
+                      <span className="text-[#0071BC] mr-2">•</span>
+                      <span>Regional government and services</span>
+                    </li>
+                  </ul>
                 </CardContent>
               </CollapsibleContent>
             </Card>
           </Collapsible>
+          </div>
         </div>
 
-        <Card className="mt-6 border border-gray-300">
+        <Card className="mb-6 border border-gray-300">
           <CardContent className="p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Our comment</h3>
             <div className="space-y-4 text-sm text-gray-700">
@@ -799,6 +887,13 @@ export default function ModeShareDashboard() {
           </nav>
         </div>
       </footer>
+
+      {showToast && (
+        <Toast
+          message="You can only select up to 2 areas"
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   )
 }

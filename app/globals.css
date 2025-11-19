@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,4 +123,40 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom Leaflet Tooltip Styling */
+.custom-tooltip {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  white-space: nowrap !important;
+}
+
+.custom-tooltip::before {
+  border-top-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.dark .custom-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #0071BC !important;
+  color: #000000 !important;
+}
+
+.dark .custom-tooltip::before {
+  border-top-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Remove Leaflet default focus outline */
+.leaflet-interactive:focus {
+  outline: none !important;
+}
+
+.leaflet-interactive:focus-visible {
+  outline: none !important;
 }
