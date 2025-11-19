@@ -695,6 +695,18 @@ export default function ModeShareDashboard() {
                 }}
               />
             </div>
+
+            {/* Explore Dataset Button */}
+            <div className="mt-6 flex justify-end">
+              <a
+                href="https://opendata.vancouver.ca/explore/dataset/indicator-data/table/?sort=periodend&disjunctive.geographyname&disjunctive.geographyid=true&refine.indicatorname=Mode+share+(trips+made+by+foot,+bike,+or+transit)+by+Vancouver+residents"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0071BC] text-white px-4 py-2 rounded-lg hover:bg-[#005a9c] transition-colors duration-200 text-sm font-medium"
+              >
+                Explore the dataset
+              </a>
+            </div>
           </CardContent>
         </Card>
 
@@ -819,8 +831,8 @@ export default function ModeShareDashboard() {
 
         <Card className="mb-6 border border-gray-300">
           <CardContent className="p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Our comment</h3>
-            <div className="space-y-4 text-sm text-gray-700">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Our comment</h3>
+            <div className="space-y-4 text-sm text-gray-700 text-center">
               <p>
                 We met our 2020 sustainable mode share goal in 2015/16, and we're working hard to meet our previous 2040
                 goal by 2030.
