@@ -14,9 +14,11 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 ## Risk Register
 
 ### Risk Rating Scale
-- **Probability:** Low (1-3) | Medium (4-6) | High (7-9) | Very High (10)
-- **Impact:** Low (1-3) | Medium (4-6) | High (7-9) | Critical (10)
-- **Risk Score:** Probability × Impact
+- **Probability (1–5):** 1 (Very Low) | 2 (Low) | 3 (Medium) | 4 (High) | 5 (Very High)
+- **Impact (1–5):** 1 (Low) | 2 (Moderate) | 3 (Medium) | 4 (High) | 5 (Critical)
+- **Risk Score:** Probability × Impact (Max 25)
+
+Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
 
 ---
 
@@ -24,9 +26,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-001: Browser Compatibility Issues
 - **Category:** Technical
-- **Probability:** Medium (5)
-- **Impact:** Medium (5)
-- **Risk Score:** 25
+- **Probability:** Medium (3)
+- **Impact:** Medium (3)
+- **Risk Score:** 9
 - **Status:** Active - Mitigated
 - **Description:** Map visualization (Leaflet) and Chart.js may render inconsistently across different browsers (Safari, Firefox, Edge, Chrome)
 - **Mitigation Strategy:** 
@@ -38,9 +40,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-002: Data File Loading Performance
 - **Category:** Performance
-- **Probability:** Low (3)
-- **Impact:** Medium (6)
-- **Risk Score:** 18
+- **Probability:** Low (2)
+- **Impact:** Medium (3)
+- **Risk Score:** 6
 - **Status:** Active - Monitored
 - **Description:** Multiple JSON data files (6 demographic + 1 zones + 1 GeoJSON) loaded on component mount could slow initial page load
 - **Mitigation Strategy:**
@@ -52,9 +54,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-003: Third-Party Dependency Updates
 - **Category:** Technical/Maintenance
-- **Probability:** Medium (6)
-- **Impact:** Medium (5)
-- **Risk Score:** 30
+- **Probability:** Medium (3)
+- **Impact:** Medium (3)
+- **Risk Score:** 9
 - **Status:** Active - Monitored
 - **Description:** Project relies on 18+ npm packages (Next.js, React, Leaflet, Chart.js, Radix UI) that may introduce breaking changes
 - **Mitigation Strategy:**
@@ -66,9 +68,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-004: User Experience on Mobile Devices
 - **Category:** Usability
-- **Probability:** Medium (4)
-- **Impact:** Medium (6)
-- **Risk Score:** 24
+- **Probability:** Low (2)
+- **Impact:** Medium (3)
+- **Risk Score:** 6
 - **Status:** Active - Partially Mitigated
 - **Description:** Complex dashboard with charts and maps may not be fully responsive on mobile/tablet devices
 - **Mitigation Strategy:**
@@ -84,9 +86,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-005: Map Zone Selection Conflicts ✅
 - **Category:** Technical
-- **Probability:** High (8)
-- **Impact:** High (7)
-- **Risk Score:** 56
+- **Probability:** High (4)
+- **Impact:** High (4)
+- **Risk Score:** 16
 - **Status:** RESOLVED - November 15, 2025
 - **Description:** Selecting zones from map and dropdowns could create conflicting states
 - **Resolution:**
@@ -97,9 +99,9 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 #### RISK-006: Data Source Availability ✅
 - **Category:** External Dependency
-- **Probability:** Low (2)
-- **Impact:** Critical (9)
-- **Risk Score:** 18
+- **Probability:** Low (1)
+- **Impact:** Critical (5)
+- **Risk Score:** 5
 - **Status:** RESOLVED - November 1, 2025
 - **Description:** Reliance on Vancouver Open Data Portal for source data
 - **Resolution:**
@@ -214,10 +216,10 @@ This document tracks all risks and issues identified throughout the Vancouver Ci
 
 | Risk Level | Count | Status |
 |------------|-------|--------|
-| Critical (80-100) | 0 | ✅ None Active |
-| High (50-79) | 0 | ✅ All Resolved |
-| Medium (20-49) | 4 | ⚠️ Monitored |
-| Low (1-19) | 0 | ✅ None Active |
+| Critical (20-25) | 0 | ✅ None Active |
+| High (13-19) | 0 | ✅ All Resolved |
+| Medium (6-12) | 4 | ⚠️ Monitored |
+| Low (1-5) | 0 | ✅ None Active |
 
 **Overall Risk Health:** 🟢 **LOW** - Project is stable for final presentation
 
