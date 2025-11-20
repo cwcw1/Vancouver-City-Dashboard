@@ -114,6 +114,11 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
 
 ## Issue Log
 
+### Issue Priority Scale (for realized risks)
+- **Impact (1–5):** 1 (Low) | 2 (Moderate) | 3 (Medium) | 4 (High) | 5 (Critical)
+- **Urgency (1–5):** 1 (Low) | 2 (Moderate) | 3 (Soon) | 4 (High) | 5 (Immediate)
+- **Priority Score:** Impact × Urgency (Max 25)
+
 ### CLOSED ISSUES
 
 #### ISSUE-001: Z-Index Conflict with Dropdown Menus ✅
@@ -127,6 +132,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Custom CSS in `globals.css` for Leaflet z-index management
 - **Impact:** None - resolved before major testing
 - **Closed By:** Development Team
+ - **Issue Impact:** 4 (High)
+ - **Issue Urgency:** 4 (High)
+ - **Priority Score:** 16
 
 #### ISSUE-002: Chart Legend Not Displaying Correctly ✅
 - **Severity:** Medium
@@ -140,6 +148,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Color coordination between legend and chart lines
 - **Impact:** Improved UX consistency
 - **Closed By:** Development Team
+ - **Issue Impact:** 3 (Medium)
+ - **Issue Urgency:** 2 (Moderate)
+ - **Priority Score:** 6
 
 #### ISSUE-003: TypeScript Type Errors in Build ✅
 - **Severity:** High
@@ -153,6 +164,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Verified clean build with `npm run build`
 - **Impact:** None - caught before deployment
 - **Closed By:** Development Team
+ - **Issue Impact:** 4 (High)
+ - **Issue Urgency:** 5 (Immediate)
+ - **Priority Score:** 20
 
 #### ISSUE-004: Mutual Exclusivity Logic Not Working ✅
 - **Severity:** High
@@ -166,6 +180,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Added visual feedback (X buttons) for active filters
 - **Impact:** Significant UX improvement
 - **Closed By:** Development Team
+ - **Issue Impact:** 4 (High)
+ - **Issue Urgency:** 4 (High)
+ - **Priority Score:** 16
 
 #### ISSUE-005: GeoJSON Zone Boundaries Not Rendering ✅
 - **Severity:** Critical
@@ -181,6 +198,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Added useRef pattern to prevent re-render loops
 - **Impact:** Core feature enabled
 - **Closed By:** Development Team
+ - **Issue Impact:** 5 (Critical)
+ - **Issue Urgency:** 5 (Immediate)
+ - **Priority Score:** 25
 
 #### ISSUE-006: Toast Notification Not Auto-Dismissing ✅
 - **Severity:** Low
@@ -193,6 +213,9 @@ Note: Legacy 1–10 ratings were normalized to 1–5 using the rule ceil(old/2).
   - Implemented fade-out animation
 - **Impact:** Minor UX polish
 - **Closed By:** Development Team
+ - **Issue Impact:** 2 (Moderate)
+ - **Issue Urgency:** 2 (Moderate)
+ - **Priority Score:** 4
 
 ---
 
