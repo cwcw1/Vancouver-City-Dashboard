@@ -72,46 +72,32 @@ Create an interactive web dashboard visualizing Vancouver's transportation mode 
 
 ---
 
-## 3. Initial Product Backlog (55 Story Points)
+## 3. Initial Product Backlog (Aligned to course example)
 
-### Epic Overview
+### Epic 1: Research & Early Sketches (Lo-fi Prototype)
+- Review the current dashboard and list usability issues (what doesn’t work well)
+- Sketch simple wireframes showing proposed improvements
+- Validate sketches against a chosen user persona (needs, pain points)
 
-| Epic | Stories | SP | Priority |
-|------|---------|----|----|
-| Data Loading | Load 6 JSON files (gender, 4 age groups, zones+GeoJSON) | 8 | Must |
-| Charts | Line chart (2013-2020), legend, donut charts | 10 | Must/Should |
-| Filtering | Demographic/zone dropdowns, reset, exclusivity | 15 | Must |
-| Interactive Map | Leaflet integration, zone clicks, tooltips | 18 | Must/Should |
-| UI Polish | Collapsibles, branding, external link | 7 | Could |
-| Deployment | Netlify, README, performance | 8 | Must |
+### Epic 2: Visual Design (Hi-fi Prototype)
+- Convert sketches to polished designs with colours, fonts, and layouts
+- Design key interactions (buttons, charts, menus)
+- Conduct quick usability tests with classmates and iterate
 
-### Must-Have Stories (34 SP)
+### Epic 3: Accessibility & Usability
+- Ensure readable typography and sufficient contrast (WCAG-friendly)
+- Add labels, alt text, and straightforward navigation
+- Document accessibility checks and adjustments made
 
-| ID | Story | AC Summary | SP |
-|----|-------|-----------|-----|
-| US-1.1 | Load gender data | Fetch JSON, error handling, loading state | 2 |
-| US-1.2 | Load 4 age datasets | All JSONs load, unified structure | 3 |
-| US-1.3 | Load zones + GeoJSON | 9 zones + vancouver.geojson | 3 |
-| US-2.1 | Line chart (2013-2020) | Chart.js, X: years, Y: 0-100% | 5 |
-| US-3.1 | Demographic filter | Dropdown (4 age groups + gender) | 5 |
-| US-3.2 | Zone comparison | 2 dropdowns, green/red lines | 5 |
-| US-4.1 | Interactive map | Leaflet, 9 zones, zoom controls | 8 |
-| US-6.1 | Netlify deployment | Auto-deploy from GitHub main | 3 |
+### Epic 4: First Working Version (Functional Code)
+- Connect designs to real data via local JSON files
+- Ensure charts/tables show correct information under filters
+- Write clean, maintainable code structured for iteration
 
-### Should/Could-Have Stories (21 SP)
-
-| ID | Story | SP | Priority |
-|----|-------|----|----------|
-| US-2.2 | Chart legend | 2 | Should |
-| US-3.3 | Reset buttons | 2 | Should |
-| US-3.4 | Filter exclusivity | 3 | Should |
-| US-4.2 | Map zone clicks | 5 | Should |
-| US-6.2 | README docs | 2 | Should |
-| US-2.3 | Donut charts | 3 | Could |
-| US-4.3 | Map tooltips | 3 | Could |
-| US-5.1 | Collapsible sections | 3 | Could |
-
-**Won't Have (Deferred):** Mobile responsive, data export, real-time API, user auth
+### Epic 5: Final Dashboard (Integrated Code)
+- Integrate design and code into one coherent, deployable dashboard
+- Polish visuals and interactions for a professional presentation
+- Prepare final demo materials for instructor/class
 
 ---
 
